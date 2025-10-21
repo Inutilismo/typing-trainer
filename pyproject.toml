@@ -1,0 +1,50 @@
+[tool.poetry]
+name = "typing-trainer"
+version = "0.1.0"
+description = "CLI typing trainer with adaptive drills, progress tracking, exports, charts, and a minimal Flask dashboard."
+authors = ["You <you@example.com>"]
+readme = "README.md"
+license = "MIT"
+
+# CRITICAL: You are not distributing a Python package here.
+# Poetry 1.8+ supports disabling package mode:
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.13"
+
+# ---- Optional dependency groups ----
+[tool.poetry.group.dashboard]
+optional = true
+[tool.poetry.group.dashboard.dependencies]
+flask = "^3.0.0"
+
+[tool.poetry.group.plots]
+optional = true
+[tool.poetry.group.plots.dependencies]
+matplotlib = "^3.8.0"
+
+[tool.poetry.group.windows]
+optional = true
+[tool.poetry.group.windows.dependencies]
+windows-curses = { version = "^2.3.0", markers = 'platform_system == "Windows"' }
+
+# ---- Dev tools (optional) ----
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.6.0"
+black = "^24.8.0"
+mypy = "^1.10.0"
+pytest = "^8.3.0"
+
+[tool.black]
+line-length = 100
+target-version = ["py39"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+select = ["E","F","W","I","UP"]
+
+[build-system]
+requires = ["poetry-core>=1.8.0"]
+build-backend = "poetry.core.masonry.api"
